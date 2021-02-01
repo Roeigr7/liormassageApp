@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import { Provider as AuthProvider } from './src/context/auth-context';
+import { Provider as BookingProvider } from './src/context/booking-context';
+import { Provider as ModalProvider } from './src/context/modal-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { AppLoading } from 'expo';
+import fetchFonts from './fonts';
+import RootModal from './src/modals/RootModal';
+import { DrawerNavigator } from './src/navigators/DrawerNavigator';
+import { navigationRef } from './src/navigators/RootNavigator';
+export default App = () => {
+  const [dataLoaded, setDataLoaded] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (!dataLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setDataLoaded(true)}
+      />
+    );
+  } else
+    return (
+      <AuthProvider>
+        <BookingProvider>
+          <ModalProvider>
+            <NavigationContainer ref={navigationRef} initialRouteName='Home'>
+              <DrawerNavigator />
+            </NavigationContainer>
+
+            <RootModal />
+          </ModalProvider>
+        </BookingProvider>
+      </AuthProvider>
+    );
+};

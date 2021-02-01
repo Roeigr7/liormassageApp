@@ -1,15 +1,17 @@
 {
   "expo": {
-    "name": "liormassageapp",
-    "slug": "liormassageapp",
-    "version": "1.0.0",
+    "name": "roeigrin",
+    "slug": "roeigrin",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "myapp",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -17,16 +19,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+      "bundleIdentifier": "com.roeigrin.liorgrin",
+      "buildNumber": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "android": {
+      "package": "com.roeigrin.liorgrin",
+      "versionCode": 1
+    },
+    "description": "liorgrin"
   }
 }
